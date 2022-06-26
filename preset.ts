@@ -38,7 +38,7 @@ export default definePreset({
     })
     if (context.options.ts) {
       await editFiles({
-        title: 'Add "vitest/globals" to tsconfig.json',
+        title: 'Add "vitest/globals" & "vitest/importMeta" to tsconfig.json',
         files: 'tsconfig.json',
         operations: {
           type: 'edit-json',
@@ -49,6 +49,20 @@ export default definePreset({
           }
         }
       })
+    } else {
+      await editFiles({
+        title: 'Add "vitest/importMeta" to jsconfig.json',
+        files: 'jsconfig.json',
+        operations: {
+          type: 'edit-json',
+          merge: {
+            compilerOptions: {
+              types: ['vitest/importMeta']
+            }
+          }
+        }
+      })
+
     }
     await editFiles({
       title: 'Add vitest configuration in svelte.config.js',
@@ -107,6 +121,13 @@ export default definePreset({
         from: `${context.options.ts ? 'TS' : 'JS'}/test`,
         to: 'src/routes'
       })
+      if (context.options.msw) {
+        await extractTemplates({
+          title: 'Extract example in-source + msw test',
+          from: `${context.options.ts ? 'TS' : 'JS'}/msw`,
+          to: 'src/routes'
+        })
+      }
     }
     if (context.options.msw) {
       await executeCommand({ title: 'Create mocks folder', command: 'mkdir', arguments: ['src/mocks'] })
