@@ -1,10 +1,20 @@
 {
-	"private": true,
-	"author": "davipon <david19930304@gmail.com>",
-	"license": "MIT",
-	"preset": "preset.ts",
-	"devDependencies": {
-		"@preset/core": "^0.6.0",
-		"@types/node": "^18.0.0"
-	}
+  "private": true,
+  "name": "svelte-add-vitest",
+  "description": "Svelte adder for Vitest",
+  "author": "davipon <davipondev@gmail.com>",
+  "keywords": [
+    "svelte",
+    "svelte-add",
+    "vitest",
+    "preset"
+  ],
+  "repository": "https://github.com/davipon/svelte-add-vitest",
+  "bugs": "https://github.com/davipon/svelte-add-vitest/issues",
+  "license": "MIT",
+  "preset": "preset.ts",
+  "devDependencies": {
+    "@preset/core": "^0.6.0",
+    "@types/node": "^18.0.0"
+  }
 }

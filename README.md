@@ -1,19 +1,46 @@
 <p align="center">
-  <br />
-  <a href="https://preset.dev">
-    <img width="100" src="https://raw.githubusercontent.com/preset/preset/main/.github/assets/logo.svg" alt="Logo of Preset">
-  </a>
+    <img width="100" src="https://avatars.githubusercontent.com/u/23617963?s=200&v=4" alt="Logo of Svelte"/>
+    <img width="100" src="https://user-images.githubusercontent.com/11247099/145112184-a9ff6727-661c-439d-9ada-963124a281f7.png" alt="Logo of Svelte"/>
   <br />
 </p>
 
-<h2 align="center">svelte-add-vitest</h2>
-<pre><div align="center">npx @preset/cli apply username//Users/davidpeng/svelte-add-vitest</div></pre>
+<h1 align="center">svelte-add-vitest</h1>
+<pre><div align="center">npx @preset/cli davipon/svelte-add-vitest</div></pre>
 
-<br />
+## ❓ What is this?
 
-<div align="center">
-  This preset was made by davipon.
-  <br />
-  <br />
-  <a href="https://preset.dev">Learn more</a>
-</div>
+This is a preset to add Vitest to your SvelteKit project.
+
+## 🔋 Batteries-included
+- [Use the APIs globally like Jest](https://vitest.dev/config/#globals)
+- [In-source testing](https://vitest.dev/guide/in-source.html)
+- [Native code coverage](https://vitest.dev/guide/coverage.html) via `c8`
+- [Mock Service Worker](https://mswjs.io) (MSW) let you mock both REST and GraphQL network requests
+
+## 🛠 Usage
+
+You must start with a fresh copy of the official SvelteKit template, which is currently created by running this command:
+
+```bash
+npm init svelte@next
+```
+
+> ⚠️ Make sure to choose **Skeleton Project**
+
+Once that is set up, run this command in your project directory to set up Vitest:
+
+```bash
+npx @preset/cli davipon/svelte-add-vitest --ts --msw --example
+```
+
+### ⚙️ Options
+
+| Description        | Flag        | Default |
+| ------------------ | ----------- | ------- |
+| Typescript Support | `--ts`      | False   |
+| Setup `msw`        | `--msw`     | False   |
+| Generate Example   | `--example` | False   |
+
+## 📄 License
+
+MIT
