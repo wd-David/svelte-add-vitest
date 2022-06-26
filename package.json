@@ -1,0 +1,10 @@
+{
+	"private": true,
+	"author": "davipon <david19930304@gmail.com>",
+	"license": "MIT",
+	"preset": "preset.ts",
+	"devDependencies": {
+		"@preset/core": "^0.6.0",
+		"@types/node": "^18.0.0"
+	}
+}
