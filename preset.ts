@@ -90,7 +90,7 @@ export default definePreset({
 				// msw setup
 				setupFiles: ['./src/mocks/setup.${context.options.ts ? 'ts' : 'js'}'],
 				coverage: {
-					exclude: 'src/mocks'
+					exclude: ['src/mocks']
 				},`
             : ''
         }
