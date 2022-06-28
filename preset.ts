@@ -11,7 +11,6 @@ export default definePreset({
       for: 'node',
       packages: [
         'vitest',
-        'vitest-svelte-kit',
         '@testing-library/svelte',
         'jsdom',
         'c8',
@@ -20,7 +19,7 @@ export default definePreset({
       dev: true
     })
     await extractTemplates({
-      title: 'Extract vitest.config.js to root folder',
+      title: 'Extract vite.config.js to the root folder',
       from: 'config'
     })
     await editFiles({
@@ -62,44 +61,30 @@ export default definePreset({
           }
         }
       })
-
     }
     await editFiles({
-      title: 'Add vitest configuration in svelte.config.js',
-      files: 'svelte.config.js',
+      title: 'Modify vite.config.js',
+      files: 'vite.config.js',
       operations: [
         {
           type: 'update-content',
           update: (content) =>
             content.replace(
-              'adapter: adapter()',
-              `adapter: adapter(),
-		vite: {
-			define: {
-				// Eliminate in-source test code
-				'import.meta.vitest': 'undefined'
-			},
-		  test: {
-				// jest like globals
-		    globals: true,
-		    environment: 'jsdom',
-				// in-source testing
-				includeSource: ['src/**/*.{js,ts,svelte}'],${
-          context.options.msw
-            ? `
+              `includeSource: ['src/**/*.{js,ts,svelte}']`,
+              `includeSource: ['src/**/*.{js,ts,svelte}'],${
+                context.options.msw
+                  ? `
 				// msw setup
 				setupFiles: ['./src/mocks/setup.${context.options.ts ? 'ts' : 'js'}'],
 				coverage: {
 					exclude: ['src/mocks']
 				},`
-            : ''
-        }
+                  : ''
+              }
 				deps: {
 					// Put Svelte component here, e.g., inline: [/svelte-multiselect/, /msw/]
 					inline: [${context.options.msw ? '/msw/' : ''}]
-				}
-			}
-		}`
+				}`
             )
         }
       ]
@@ -130,7 +115,11 @@ export default definePreset({
       }
     }
     if (context.options.msw) {
-      await executeCommand({ title: 'Create mocks folder', command: 'mkdir', arguments: ['src/mocks'] })
+      await executeCommand({
+        title: 'Create mocks folder',
+        command: 'mkdir',
+        arguments: ['src/mocks']
+      })
       await extractTemplates({
         title: 'Extract mocks',
         from: `${context.options.ts ? 'TS' : 'JS'}/mocks`,
