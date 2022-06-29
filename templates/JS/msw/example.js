@@ -8,9 +8,9 @@ export const fetchPosts = async () => {
 // in-source testing
 if (import.meta.vitest) {
 	const { it, expect } = import.meta.vitest;
-	const { posts } = await import('../mocks/handlers');
 
 	it('Test fetchPosts', async () => {
+		const { posts } = await import('../mocks/handlers');
 		const result = await fetchPosts();
 		expect(result).toEqual(posts);
 	});
