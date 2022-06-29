@@ -1,5 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/experimental/vite'
 
+/** @type {import('vitest/config').UserConfig} */
 export default {
   define: {
     // Eliminate in-source test code
