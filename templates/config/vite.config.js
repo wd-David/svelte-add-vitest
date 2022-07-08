@@ -1,6 +1,6 @@
-import { sveltekit } from '@sveltejs/kit/experimental/vite'
+import { sveltekit } from '@sveltejs/kit/vite'
 
-/** @type {import('vitest/config').UserConfig} */
+/** @type {import('vite').UserConfig} */
 export default {
   define: {
     // Eliminate in-source test code
