@@ -11,7 +11,9 @@ export default {
     globals: true,
     environment: 'jsdom',
     // in-source testing
-    includeSource: ['src/**/*.{js,ts,svelte}']
+    includeSource: ['src/**/*.{js,ts,svelte}'],
+    // Exclude playwright tests folder
+    exclude: [...configDefaults.exclude, 'tests'],
   },
   plugins: [sveltekit()]
 }
