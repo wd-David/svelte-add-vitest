@@ -22,7 +22,7 @@ This is a preset to add Vitest to your SvelteKit project.
 You must start with a fresh copy of the official SvelteKit template, which is currently created by running this command:
 
 ```bash
-npm init svelte@next
+npm create svelte my-app
 ```
 
 > ⚠️ Make sure to choose **Skeleton Project**
