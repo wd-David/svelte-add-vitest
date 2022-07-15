@@ -29,7 +29,7 @@ export default definePreset({
         type: 'edit-json',
         merge: {
           scripts: {
-            test: 'vitest',
+            'test:unit': 'vitest',
             coverage: 'vitest run --coverage'
           }
         }
@@ -95,18 +95,18 @@ export default definePreset({
       operations: [{ type: 'add-line', position: 'prepend', lines: 'coverage' }]
     })
     if (context.options.example) {
-      await installPackages({
-        title: 'Installing cross-fetch',
-        for: 'node',
-        packages: ['cross-fetch'],
-        dev: true
-      })
       await extractTemplates({
         title: 'Extract example test',
         from: `${context.options.ts ? 'TS' : 'JS'}/test`,
         to: 'src/routes'
       })
       if (context.options.msw) {
+        await installPackages({
+          title: 'Installing cross-fetch',
+          for: 'node',
+          packages: ['cross-fetch'],
+          dev: true
+        })
         await extractTemplates({
           title: 'Extract example in-source + msw test',
           from: `${context.options.ts ? 'TS' : 'JS'}/msw`,

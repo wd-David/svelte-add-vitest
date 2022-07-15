@@ -33,6 +33,26 @@ Once that is set up, run this command in your project directory to set up Vitest
 npx @preset/cli davipon/svelte-add-vitest --ts --msw --example
 ```
 
+### 🎭 Playwright compatible
+If you have `playwright` installed, make sure to configure it to only run tests using playwright annotations.
+For instance, the playwright test is placed under `tests` in SvelteKit skeleton project. You need to specify it after adding Vitest:
+
+```js
+//playwright.config.js
+
+/** @type {import('@playwright/test').PlaywrightTestConfig} */
+const config = {
+  webServer: {
+    command: 'npm run build && npm run preview',
+    port: 4173
+  },
+  // Add testMatch here
+  testMatch: 'tests/**/*.js',
+};
+
+export default config;
+```
+
 ### ⚙️ Options
 
 | Description        | Flag        | Default |
