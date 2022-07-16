@@ -15,6 +15,8 @@ This is a preset to add Vitest to your SvelteKit project.
 - [Use the APIs globally like Jest](https://vitest.dev/config/#globals)
 - [In-source testing](https://vitest.dev/guide/in-source.html)
 - [Native code coverage](https://vitest.dev/guide/coverage.html) via `c8`
+- Support component test using [`@testing-library/svelte`](https://github.com/testing-library/svelte-testing-library)
+- Use assertions from [`@testing-library/jest-dom`](https://github.com/testing-library/jest-dom) and TypeScript support
 - [Mock Service Worker](https://mswjs.io) (MSW) let you mock both REST and GraphQL network requests
 
 ## 🛠 Usage
@@ -25,7 +27,7 @@ You must start with a fresh copy of the official SvelteKit template, which is cu
 npm create svelte my-app
 ```
 
-> ⚠️ Make sure to choose **Skeleton Project**
+### ⚠️ Make sure to choose **Skeleton Project**
 
 Once that is set up, run this command in your project directory to set up Vitest:
 
@@ -33,7 +35,7 @@ Once that is set up, run this command in your project directory to set up Vitest
 npx @preset/cli davipon/svelte-add-vitest --ts --msw --example
 ```
 
-### 🎭 Playwright compatible
+## 🎭 Playwright compatible
 If you have `playwright` installed, make sure to configure it to only run tests using playwright annotations.
 For instance, the playwright test is placed under `tests` in SvelteKit skeleton project. You need to specify it after adding Vitest:
 
@@ -53,7 +55,7 @@ const config = {
 export default config;
 ```
 
-### ⚙️ Options
+## ⚙️ Options
 
 | Description        | Flag        | Default |
 | ------------------ | ----------- | ------- |
