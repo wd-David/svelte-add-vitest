@@ -1,8 +1,9 @@
-import { sveltekit } from '@sveltejs/kit/vite';
+import { sveltekit } from '@sveltejs/kit/vite'
+import { configDefaults } from 'vitest/config'
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit()],
+  plugins: [sveltekit()],
   define: {
     // Eliminate in-source test code
     'import.meta.vitest': 'undefined'
@@ -14,9 +15,8 @@ const config = {
     // in-source testing
     includeSource: ['src/**/*.{js,ts,svelte}'],
     // Exclude playwright tests folder
-    exclude: ['tests'],
-  },
-};
+    exclude: [...configDefaults.exclude, 'tests']
+  }
+}
 
-export default config;
-
+export default config
