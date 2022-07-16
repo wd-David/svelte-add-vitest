@@ -12,6 +12,8 @@ export default definePreset({
       packages: [
         'vitest',
         '@testing-library/svelte',
+        '@testing-library/jest-dom',
+        '@types/testing-library__jest-dom',
         'jsdom',
         'c8',
         context.options.msw ? 'msw' : ''
@@ -37,26 +39,30 @@ export default definePreset({
     })
     if (context.options.ts) {
       await editFiles({
-        title: 'Add "vitest/globals" & "vitest/importMeta" to tsconfig.json',
+        title: 'Add "vitest/globals" & "vitest/importMeta" & @testing-library/jest-dom to tsconfig.json',
         files: 'tsconfig.json',
         operations: {
           type: 'edit-json',
           merge: {
             compilerOptions: {
-              types: ['vitest/globals', 'vitest/importMeta']
+              types: [
+                'vitest/globals',
+                'vitest/importMeta',
+                '@testing-library/jest-dom'
+              ]
             }
           }
         }
       })
     } else {
       await editFiles({
-        title: 'Add "vitest/importMeta" to jsconfig.json',
+        title: 'Add "vitest/importMeta" & @testing-library/jest-dom to jsconfig.json',
         files: 'jsconfig.json',
         operations: {
           type: 'edit-json',
           merge: {
             compilerOptions: {
-              types: ['vitest/importMeta']
+              types: ['vitest/importMeta', '@testing-library/jest-dom']
             }
           }
         }
@@ -74,17 +80,20 @@ export default definePreset({
               `includeSource: ['src/**/*.{js,ts,svelte}'],${
                 context.options.msw
                   ? `
-				// msw setup
-				setupFiles: ['./src/mocks/setup.${context.options.ts ? 'ts' : 'js'}'],
-				coverage: {
-					exclude: ['src/mocks']
-				},`
-                  : ''
+    // msw setup
+    setupFiles: ['./setupVitest.js', './src/mocks/setup.${
+      context.options.ts ? 'ts' : 'js'
+    }'],
+    coverage: {
+      exclude: ['src/mocks']
+    },`
+                  : `
+    setupFiles: ['./setupVitest.js'],`
               }
-				deps: {
-					// Put Svelte component here, e.g., inline: [/svelte-multiselect/, /msw/]
-					inline: [${context.options.msw ? '/msw/' : ''}]
-				}`
+    deps: {
+      // Put Svelte component here, e.g., inline: [/svelte-multiselect/, /msw/]
+      inline: [${context.options.msw ? '/msw/' : ''}]
+    }`
             )
         }
       ]
