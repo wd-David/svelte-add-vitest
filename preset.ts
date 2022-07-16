@@ -81,7 +81,7 @@ export default definePreset({
                 context.options.msw
                   ? `
     // Add @testing-library/jest-dom matchers & setup MSW
-    setupFiles: ['./setupVitest.js', './src/mocks/setup.${
+    setupFiles: ['./setupTest.js', './src/mocks/setup.${
       context.options.ts ? 'ts' : 'js'
     }'],
     coverage: {
@@ -89,7 +89,7 @@ export default definePreset({
     },`
                   : `
     // Add @testing-library/jest-dom matchers
-    setupFiles: ['./setupVitest.js'],`
+    setupFiles: ['./setupTest.js'],`
               }
     deps: {
       // Put Svelte component here, e.g., inline: [/svelte-multiselect/, /msw/]
