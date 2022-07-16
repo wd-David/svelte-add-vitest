@@ -16,7 +16,7 @@ This is a preset to add Vitest to your SvelteKit project.
 - [In-source testing](https://vitest.dev/guide/in-source.html)
 - [Native code coverage](https://vitest.dev/guide/coverage.html) via `c8`
 - Support component test using [`@testing-library/svelte`](https://github.com/testing-library/svelte-testing-library)
-- Use assertions from [`@testing-library/jest-dom`](https://github.com/testing-library/jest-dom) and TypeScript support
+- Extend Vitest matchers with [`@testing-library/jest-dom`](https://github.com/testing-library/jest-dom) and TypeScript support
 - [Mock Service Worker](https://mswjs.io) (MSW) let you mock both REST and GraphQL network requests
 
 ## 🛠 Usage

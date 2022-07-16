@@ -80,7 +80,7 @@ export default definePreset({
               `includeSource: ['src/**/*.{js,ts,svelte}'],${
                 context.options.msw
                   ? `
-    // msw setup
+    // Add @testing-library/jest-dom matchers & setup MSW
     setupFiles: ['./setupVitest.js', './src/mocks/setup.${
       context.options.ts ? 'ts' : 'js'
     }'],
@@ -88,6 +88,7 @@ export default definePreset({
       exclude: ['src/mocks']
     },`
                   : `
+    // Add @testing-library/jest-dom matchers
     setupFiles: ['./setupVitest.js'],`
               }
     deps: {
