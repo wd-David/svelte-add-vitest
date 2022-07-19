@@ -84,12 +84,19 @@ export default definePreset({
     setupFiles: ['./setupTest.js', './src/mocks/setup.${
       context.options.ts ? 'ts' : 'js'
     }'],
+    // Exclude files in c8
     coverage: {
-      exclude: ['src/mocks']
+      exclude: ['setupTest.js', 'src/mocks']
     },`
                   : `
     // Add @testing-library/jest-dom matchers
-    setupFiles: ['./setupTest.js'],`
+    setupFiles: ['./setupTest.js'],
+    // Exclude files in c8
+    coverage: {
+      exclude: ['setupTest.js']
+    },
+    `
+
               }
     deps: {
       // Put Svelte component here, e.g., inline: [/svelte-multiselect/, /msw/]
