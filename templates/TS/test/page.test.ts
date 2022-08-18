@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/svelte';
-import Index from './index.svelte';
+import Index from './+page.svelte';
 
 describe('Test index.svelte', () => {
 	it('h1 exists', () => {
