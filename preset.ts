@@ -21,8 +21,8 @@ export default definePreset({
       dev: true
     })
     await extractTemplates({
-      title: 'Extract vite.config.js to the root folder',
-      from: 'config'
+      title: `Extract vite.config.${context.options.ts ? 'ts' : 'js'}`,
+      from: `${context.options.ts ? 'TS' : 'JS'}/vite`,
     })
     await editFiles({
       title: 'Add "test" & "coverage" to package.json scripts',
@@ -42,16 +42,12 @@ export default definePreset({
         title: 'Add "vitest/globals" & "vitest/importMeta" & @testing-library/jest-dom to tsconfig.json',
         files: 'tsconfig.json',
         operations: {
-          type: 'edit-json',
-          merge: {
-            compilerOptions: {
-              types: [
-                'vitest/globals',
-                'vitest/importMeta',
-                '@testing-library/jest-dom'
-              ]
-            }
-          }
+          type: 'update-content',
+          update: (content) => content.replace(
+            '"strict": true',
+            `"strict": true,
+    "types": ["vitest/globals", "vitest/importMeta", "@testing-library/jest-dom"]`
+          )
         }
       })
     } else {
@@ -59,27 +55,30 @@ export default definePreset({
         title: 'Add "vitest/importMeta" & @testing-library/jest-dom to jsconfig.json',
         files: 'jsconfig.json',
         operations: {
-          type: 'edit-json',
-          merge: {
-            compilerOptions: {
-              types: ['vitest/importMeta', '@testing-library/jest-dom']
-            }
-          }
+          type: 'update-content',
+          update: (content) => content.replace(
+            '"strict": true',
+            `"strict": true,
+    "types": ["vitest/importMeta", "@testing-library/jest-dom"]`
+          )
         }
       })
     }
+    await extractTemplates({
+      title: 'Extract setupTest.js to the root folder',
+      from: 'config'
+    })
     await editFiles({
-      title: 'Modify vite.config.js',
-      files: 'vite.config.js',
-      operations: [
-        {
-          type: 'update-content',
-          update: (content) =>
-            content.replace(
-              `includeSource: ['src/**/*.{js,ts,svelte}']`,
-              `includeSource: ['src/**/*.{js,ts,svelte}'],${
-                context.options.msw
-                  ? `
+      title: `Modify vite.config.${context.options.ts ? 'ts' : 'js'}`,
+      files: `vite.config.${context.options.ts ? 'ts' : 'js'}`,
+      operations: {
+        type: 'update-content',
+        update: (content) =>
+          content.replace(
+            `includeSource: ['src/**/*.{js,ts,svelte}']`,
+            `includeSource: ['src/**/*.{js,ts,svelte}'],${
+              context.options.msw
+                ? `
     // Add @testing-library/jest-dom matchers & setup MSW
     setupFiles: ['./setupTest.js', './src/mocks/setup.${
       context.options.ts ? 'ts' : 'js'
@@ -95,16 +94,13 @@ export default definePreset({
     coverage: {
       exclude: ['setupTest.js']
     },
-    `
-
-              }
+    `}
     deps: {
       // Put Svelte component here, e.g., inline: [/svelte-multiselect/, /msw/]
       inline: [${context.options.msw ? '/msw/' : ''}]
     }`
-            )
-        }
-      ]
+          )
+      }
     })
     await editFiles({
       title: 'Add "coverage" to .gitignore',

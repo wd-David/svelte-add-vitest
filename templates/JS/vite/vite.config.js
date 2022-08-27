@@ -1,5 +1,5 @@
-import { sveltekit } from '@sveltejs/kit/vite'
-import { configDefaults } from 'vitest/config'
+import { sveltekit } from '@sveltejs/kit/vite';
+import { configDefaults } from 'vitest/config';
 
 /** @type {import('vite').UserConfig} */
 const config = {
@@ -17,6 +17,6 @@ const config = {
     // Exclude playwright tests folder
     exclude: [...configDefaults.exclude, 'tests']
   }
-}
+};
 
-export default config
+export default config;
