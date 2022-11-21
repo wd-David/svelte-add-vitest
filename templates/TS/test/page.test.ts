@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/svelte';
-import Index from './index.svelte';
+import Page from './+page.svelte';
 
-describe('Test index.svelte', () => {
+describe('Test +page.svelte', () => {
 	it('h1 exists', () => {
-		const { getByText } = render(Index);
+		const { getByText } = render(Page);
 		expect(getByText('Welcome to SvelteKit')).toBeTruthy()
 	});
 	it('link to svelte website', () => {
-    render(Index)
+    render(Page)
 
 		const link = screen.getByRole('link')
 		expect(link).toHaveAttribute('href', 'https://kit.svelte.dev')

@@ -17,6 +17,6 @@ const config = {
     // Exclude playwright tests folder
     exclude: [...configDefaults.exclude, 'tests']
   }
-};
+}
 
-export default config;
+export default config
