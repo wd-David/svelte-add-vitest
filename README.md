@@ -1,6 +1,8 @@
 > **Warning**
 > This svelte adder is no longer maintained.
+>
 > You can now create a new SvelteKit project with Vitest using `npm create svelte@latest`.
+> 
 > Features like adding `@testing-library/svelte` or `msw`, please check [davipon/svelte-component-test-recipes](https://github.com/davipon/svelte-component-test-recipes)
 
 <p align="center">
